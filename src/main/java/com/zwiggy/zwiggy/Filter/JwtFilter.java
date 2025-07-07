@@ -35,6 +35,12 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        String path = request.getRequestURI();
+        if (path.startsWith("/auth") || path.startsWith("/meals")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
 
         String token = authHeader.substring(7);
         String email = jwtService.extractEmail(token);

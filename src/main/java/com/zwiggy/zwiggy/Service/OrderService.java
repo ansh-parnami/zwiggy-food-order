@@ -1,9 +1,11 @@
 package com.zwiggy.zwiggy.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zwiggy.zwiggy.Dto.Customer;
 import com.zwiggy.zwiggy.Dto.Item;
+import com.zwiggy.zwiggy.Dto.OrderRequest;
 import com.zwiggy.zwiggy.Dto.OrderResponse;
 import com.zwiggy.zwiggy.Entity.Order;
 import com.zwiggy.zwiggy.Repository.OrderRepository;
@@ -13,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,7 +30,8 @@ public class OrderService {
     OrderRepository orderRepository;
     @Autowired
     private ObjectMapper objectMapper;
-    public ResponseEntity<Map<String, String>> saveOrder(OrderResponse dto) {
+
+    public ResponseEntity<Map<String, String>> saveOrder(OrderRequest dto) {
 
         if (dto.getCustomer() == null || dto.getItems() == null || dto.getItems().isEmpty()) {
             return ResponseEntity.badRequest()
@@ -66,4 +71,39 @@ public class OrderService {
 
 
     }
+
+
+
+    public List<OrderResponse> getOrderHistory(String email) {
+        List<Order> orders = orderRepository.findByEmail(email);
+        List<OrderResponse> historyList = new ArrayList<>();
+
+        for (Order order : orders) {
+            OrderResponse dto = new OrderResponse();
+            dto.setId(order.getId());
+            dto.setName(order.getName());
+            dto.setEmail(order.getEmail());
+            dto.setCity(order.getCity());
+            dto.setStreet(order.getStreet());
+            dto.setPostalCode(order.getPostalCode());
+
+            try {
+                List<Item> items = objectMapper.readValue(
+                        order.getItemsJson(),
+                        new TypeReference<List<Item>>() {}
+                );
+                dto.setItems(items);
+            } catch (Exception e) {
+                e.printStackTrace();
+                dto.setItems(new ArrayList<>());
+            }
+
+            historyList.add(dto);
+        }
+
+        return historyList;
+    }
+
+
+
 }

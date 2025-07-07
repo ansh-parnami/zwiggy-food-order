@@ -6,11 +6,11 @@ export default function CartItem({ item, onClickAdd, onClickDelete }) {
             <p>
                 {item.name} - {item.quantity} x ₹{item.price}
             </p>
-            <p className="actions">
-                <Button onClick={onClickAdd}>+</Button>
-                <span>{item.quantity}</span>
-                <Button onClick={onClickDelete}>-</Button>
-            </p>
+            <div className="cart-item-actions">
+  <Button onClick={onClickAdd}>+</Button>
+  <span>{item.quantity}</span>
+  <Button onClick={onClickDelete}>-</Button>
+</div>
         </li>
     );
 }

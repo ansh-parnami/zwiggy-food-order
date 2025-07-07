@@ -1,12 +1,13 @@
-import { useContext,useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Modal from './UI/Modal.jsx';
 import CartContext from '../Store/CartContext.jsx';
 import Input from './UI/Input.jsx';
 import Button from './UI/Button.jsx';
 import UserProgressContext from '../Store/UserProgressContext.jsx';
+import AuthContext from '../Store/AuthContext.jsx';
 import useHttp from '../hooks/useHttp.js';
-
 
 const requestConfig = {
   method: 'POST',
@@ -18,7 +19,8 @@ const requestConfig = {
 export default function Checkout() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
-
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     data,
@@ -27,10 +29,10 @@ export default function Checkout() {
     sendRequest,
     clearData
   } = useHttp('https://zwiggy-food-order-1.onrender.com/order/create', requestConfig);
-    useEffect(() => {
-  console.log('useHttp response:', { data, error });
-}, [data, error]);
 
+  useEffect(() => {
+    console.log('useHttp response:', { data, error });
+  }, [data, error]);
 
   const cartTotal = cartCtx.items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
@@ -47,19 +49,47 @@ export default function Checkout() {
     clearData();
   }
 
+  function handleLoginRedirect() {
+    userProgressCtx.hideCheckout();
+    navigate('/login');
+  }
+
+  function handleRegisterRedirect() {
+    userProgressCtx.hideCheckout();
+    navigate('/register');
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
     const fd = new FormData(event.target);
-    const customerData = Object.fromEntries(fd.entries()); // { email: test@example.com }
+    const customerData = Object.fromEntries(fd.entries());
 
     sendRequest(
       JSON.stringify({
-          items: cartCtx.items,
-          customer: customerData,
+        items: cartCtx.items,
+        customer: customerData,
       })
     );
   }
+
+  // If user is not authenticated, show login prompt
+  if (!authCtx.isAuthenticated) {
+  return (
+    <Modal open={userProgressCtx.progress === 'checkout'} onClose={handleClose}>
+      <div className="auth-required-modal">
+        <h2>Authentication Required</h2>
+        <p>Please login or create an account to proceed with checkout.</p>
+        <div className="auth-required-actions">
+          <Button onClick={handleLoginRedirect}>Login</Button>
+          <Button onClick={handleRegisterRedirect}>Sign Up</Button>
+          <Button className="cancel-button" textOnly onClick={handleClose}>Cancel</Button>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
 
   let actions = (
     <>
@@ -73,7 +103,6 @@ export default function Checkout() {
   if (isSending) {
     actions = <span>Sending order data...</span>;
   }
-  
 
   if (data && !error) {
     return (
@@ -100,15 +129,13 @@ export default function Checkout() {
         <h2>Checkout</h2>
         <p className='total-amount'>Total Amount: {cartTotal}</p>
 
-        <Input label="Full Name" type="text" id="name" />
-        <Input label="E-Mail Address" type="email" id="email" />
+        <Input label="Full Name" type="text" id="name"  />
+        <Input label="E-Mail Address" type="email" id="email" defaultValue={authCtx.user.email} />
         <Input label="Street" type="text" id="street" />
         <div className="control-row">
           <Input label="Postal Code" type="text" id="postalCode" />
           <Input label="City" type="text" id="city" />
         </div>
-
-  
 
         <p className="modal-actions">{actions}</p>
       </form>

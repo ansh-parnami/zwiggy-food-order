@@ -18,15 +18,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private JwtFilter jwtAuthFilter;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+    public SecurityFilterChain filterChain(HttpSecurity http,JwtFilter jwtAuthFilter) throws Exception {
+        http    .cors(cors -> cors
+                        .configurationSource(request -> {
+                            var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                            corsConfig.setAllowedOrigins(java.util.List.of("http://localhost:5173"));
+                            corsConfig.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                            corsConfig.setAllowedHeaders(java.util.List.of("*"));
+                            corsConfig.setAllowCredentials(true);
+                            return corsConfig;
+                        })
+                )
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/meals/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

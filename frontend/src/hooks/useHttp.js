@@ -1,11 +1,33 @@
 import { useCallback, useEffect, useState } from 'react';
 
 async function sendHttpRequest(url, config) {
-  const response = await fetch(url, config);
+  // Get token from localStorage
+  const token = localStorage.getItem('authToken');
+  
+  // Prepare headers
+  const headers = {
+    'Content-Type': 'application/json',
+    ...config.headers,
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(url, {
+    ...config,
+    headers,
+  });
 
   const resData = await response.json();
 
   if (!response.ok) {
+  
+    if (response.status === 401) {
+   
+      localStorage.removeItem('authToken');
+      window.location.href = '/login';
+    }
     throw new Error(
       resData.message || 'Something went wrong, failed to send request.'
     );
@@ -26,6 +48,7 @@ export default function useHttp(url, config, initialData) {
   const sendRequest = useCallback(
     async function sendRequest(data) {
       setIsLoading(true);
+      setError(null);
       try {
         const resData = await sendHttpRequest(url, { ...config, body: data });
         setData(resData);

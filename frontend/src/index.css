@@ -12,7 +12,15 @@ body {
   background: linear-gradient(#29251c, #2c2306);
   color: #d9e2f1;
   min-height: 100vh;
+  align-items: center;
 }
+
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
 
 #main-header {
   display: flex;
@@ -25,14 +33,20 @@ body {
   display: flex;
   gap: 1rem;
   align-items: center;
+  text-align: center;
 }
 
 #main-header #title img {
   width: 4rem;
   height: 4rem;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid #ffc404;
+}
+#main-header #title h2 {
+margin-left: 2px;
+  padding-left: 2px;
+  text-align: center;
 }
 
 #main-header button {
@@ -130,6 +144,7 @@ h1 {
 .modal-actions .text-button:hover,
 .modal-actions .text-button:active {
   color: #312c1d;
+
 }
 
 .cart-total {
@@ -141,45 +156,70 @@ h1 {
   color: #46443c;
 }
 
+/* ✅ UPDATED CART ITEM STYLES */
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5rem 0;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ccc;
+  gap: 1rem;
 }
 
 .cart-item p {
   margin: 0;
+  flex: 1;
+  font-size: 1rem;
 }
 
 .cart-item-actions {
   display: flex;
-  gap: 2rem;
   align-items: center;
+  gap: 0.5rem;
 }
-.total-amount {
+
+.cart-item-actions span {
   font-weight: bold;
+  font-size: 1rem;
+  color: #333;
 }
 
 .cart-item-actions button {
   cursor: pointer;
-  font-size: 1rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  background-color: #ffc404;
+  color: black;
   border: none;
-  background-color: #312c1d;
-  color: #ffc404;
+  font-weight: bold;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .cart-item-actions button:hover,
 .cart-item-actions button:active {
-  background-color: #1d1a16;
-  color: #ffab04;
+  background-color: #ffab04;
+  color: #000;
 }
+/* ✅ END OF CART ITEM FIX */
+
+.total-amount {
+  font-weight: bold;
+}
+
+.user-info {
+  font-weight: bold;
+  margin-right: 180px;
+  color: #ffab04;
+
+}
+
+label{
+  color: #111111;
+}
+
 
 .control {
   margin: 0.5rem 0;
@@ -214,11 +254,13 @@ h1 {
   border: 1px solid #ffc404;
   color: #1f1a09;
   padding: 0.5rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 9999px; /* Makes it pill-shaped */
 }
+
 
 .button:hover,
 .button:active {
+  cursor: pointer;
   background-color: #ffab04;
   border-color: #ffab04;
   color: #1f1a09;
@@ -230,12 +272,23 @@ h1 {
   background-color: transparent;
   border: none;
   color: #ffc404;
+
+
 }
+
 
 .text-button:hover,
 .text-button:active {
   color: #ffab04;
+  cursor: pointer;
 }
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 1.5rem;
+}
+
 
 .modal {
   background-color: #e4ddd4;
@@ -246,6 +299,17 @@ h1 {
   width: 80%;
   max-width: 40rem;
   animation: fade-slide-up 0.3s ease-out forwards;
+}
+
+.modal.cart {
+  width: 90%;
+  max-width: 28rem;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background-color: #fffdf7;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .modal::backdrop {
@@ -273,6 +337,181 @@ h1 {
 .error p {
   margin: 0;
 }
+.auth-required-modal {
+  text-align: center;
+  padding: 20px;
+}
+
+.auth-required-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.text-button.cancel-button {
+  background-color: transparent;
+  color: black;
+  border: 1px solid red;
+}
+.text-button.cancel-button:hover,
+.text-button.cancel-button:active {
+  background-color: red;
+  color: #111;
+}
+
+.order-history{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+
+}
+.order-history input{
+
+  width: 100%;
+  max-width: 20rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+#orders{
+  text-align: center;
+}
+.order-history-item{
+   border-radius: 2rem; 
+  display: flex;               
+  align-items: center;    
+  flex-direction: column;     
+              
+  width: 100%;                 
+  box-sizing: border-box; 
+  border-left: 4px solid yellow;
+  border-right: 4px solid yellow;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color:rgba(0, 0, 0, 0.4);
+  
+}
+
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-x: hidden;
+  }
+    #title {
+    justify-content: flex-start;
+  }
+
+  #title img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  #title h1 {
+    font-size: 1.2rem;
+    justify-content: right;
+  }
+
+
+   nav .user-info,
+  nav .auth-buttons,
+  nav button,
+  nav a {
+    display: none !important;
+  }
+
+  /* Exception: bottom nav stays */
+  .bottom-nav {
+    display: flex !important;
+  }
+
+  #main-header,
+  .app-inner,
+  .modal,
+  #meals,
+  .cart {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+    margin: 0 auto !important;
+    box-sizing: border-box;
+  }
+
+
+  .cart-item,
+  .meal-item,
+  .control,
+  .modal-actions {
+    flex-direction: column !important;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .modal.cart {
+    max-width: 95% !important;
+    width: 95% !important;
+  }
+}
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .bottom-nav {
+    position: fixed;         /* Stick to the screen */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1d1a16;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-top: 1px solid #ffc404;
+    z-index: 1000;            /* High priority on stacking */
+  }
+
+  .bottom-nav a,
+  .bottom-nav button {
+    background: none;
+    border: none;
+    color: #ffc404;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .bottom-nav a:hover,
+  .bottom-nav button:hover {
+    color: #ffab04;
+  }
+
+  body {
+    padding-bottom: 80px; /* Reserve space so content doesn't hide under nav */
+  }
+}
+
+
+
 
 @keyframes fade-slide-up {
   from {

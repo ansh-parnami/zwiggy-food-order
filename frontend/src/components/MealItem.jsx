@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 
 import Button from './UI/Button.jsx';
@@ -8,6 +9,7 @@ export default function MealItem({ meal }) {
   const cartCtx = useContext(CartContext);
 
   function handleAddMealToCart() {
+      toast.success("Added To Cart!");
     cartCtx.addItem(meal);
   }
 

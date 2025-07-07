@@ -2,6 +2,7 @@ package com.zwiggy.zwiggy.Service;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -9,8 +10,10 @@ import java.util.Date;
 
 @Service
 public class JWTService {
-    private final String SECRET = "your-very-secret-key-should-be-at-least-256-bits";
-    private final long EXPIRATION = 1000 * 60 * 60; // 1 hour
+
+    @Value("${jwt.secret}")
+    private String SECRET;
+    private final long EXPIRATION = 1000 * 60 * 60;
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
