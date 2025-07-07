@@ -377,9 +377,15 @@ label{
   border: 1px solid #ccc;
   margin-bottom: 1rem;
 }
+.order-history ul{
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
 #orders{
   text-align: center;
 }
+
 .order-history-item{
    border-radius: 2rem; 
   display: flex;               
@@ -396,8 +402,7 @@ label{
   
 }
 
-
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   body {
     padding: 0;
     margin: 0;
@@ -407,108 +412,116 @@ label{
     width: 100%;
     overflow-x: hidden;
   }
-    #title {
-    justify-content: flex-start;
-  }
 
-  #title img {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  #title h1 {
-    font-size: 1.2rem;
-    justify-content: right;
-  }
-
-
-   nav .user-info,
-  nav .auth-buttons,
-  nav button,
-  nav a {
-    display: none !important;
-  }
-
-  /* Exception: bottom nav stays */
-  .bottom-nav {
-    display: flex !important;
-  }
-
-  #main-header,
-  .app-inner,
-  .modal,
-  #meals,
-  .cart {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 1rem !important;
-    margin: 0 auto !important;
-    box-sizing: border-box;
-  }
-
-
-  .cart-item,
-  .meal-item,
-  .control,
-  .modal-actions {
-    flex-direction: column !important;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  .auth-buttons {
+  #main-header {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
     gap: 0.5rem;
     width: 100%;
   }
 
-  .modal.cart {
-    max-width: 95% !important;
-    width: 95% !important;
-  }
-}
-.bottom-nav {
-  display: none;
-}
-
-@media (max-width: 480px) {
-  .bottom-nav {
-    position: fixed;         /* Stick to the screen */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #1d1a16;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.7rem 1rem;
-    border-top: 1px solid #ffc404;
-    z-index: 1000;            /* High priority on stacking */
-  }
-
-  .bottom-nav a,
-  .bottom-nav button {
-    background: none;
-    border: none;
-    color: #ffc404;
-    font-size: 0.85rem;
-    display: flex;
+  #title {
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
+    justify-content: center;
+    width: 100%;
   }
 
-  .bottom-nav a:hover,
-  .bottom-nav button:hover {
+  #title img {
+    display: none;
+  }
+
+  #title h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #ffc404;
+    letter-spacing: 0.1rem;
+  }
+
+  .user-info {
+    font-size: 0.9rem;
     color: #ffab04;
+    margin: 0;
+    text-align: center;
+    width: 100%;
   }
 
-  body {
-    padding-bottom: 80px; /* Reserve space so content doesn't hide under nav */
+  nav,
+  .auth-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  nav a,
+  .auth-buttons a {
+    text-decoration: none;
+  }
+
+  button,
+  .button {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #ffc404 !important;
+    font-weight: 700;
+    box-shadow: none !important;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  button:hover,
+  .button:hover,
+  button:active,
+  .button:active {
+    color: #ffab04 !important;
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    font-weight: 700;
+  }
+
+  #meals {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .modal,
+  .modal.cart,
+  .control,
+  .cart-item,
+  .modal-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .modal.cart {
+    max-width: 95%;
+    width: 95%;
+  }
+
+  .app-inner {
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  .cart-item-actions button {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
   }
 }
+
 
 
 

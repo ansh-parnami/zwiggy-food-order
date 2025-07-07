@@ -60,7 +60,7 @@ export default function Header() {
 
 {!isOnOrderHistoryPage && (
   <Link to="/order-history">
-    <span><Button textOnly>Order History</Button></span>
+    <span><Button textOnly>Orders</Button></span>
   </Link>
 )}
               <Button textOnly onClick={authCtx.logout}>Logout</Button>
@@ -89,29 +89,8 @@ export default function Header() {
         </motion.nav>
       </motion.header>
 
-      {/* ✅ Mobile Bottom Nav */}
-      <nav className="bottom-nav"
-      >
-        <Link to="/">
-          🏠 <span>Home</span>
-        </Link>
-        <button onClick={handleShowCart}>
-          🛒 <span>Cart ({totalCartItems})</span>
-        </button>
-        {authCtx.isAuthenticated ? (
-          <button onClick={authCtx.logout}>
-            🚪 <span>Logout</span>
-          </button>
-        ) : location.pathname === '/login' ? (
-          <Link to="/register">
-            📝 <span>Sign Up</span>
-          </Link>
-        ) : (
-          <Link to="/login">
-            👤 <span>Login</span>
-          </Link>
-        )}
-      </nav>
+
+
     </>
   );
 }
