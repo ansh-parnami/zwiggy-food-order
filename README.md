@@ -15,8 +15,6 @@ Orders are stored in MySQL, and users receive instant order confirmations via em
 
 🛒 Cart System – Add/remove items in real-time using React Context API
 
-📬 Guest Checkout – Place orders with delivery details, no login required
-
 📨 Email Confirmation – Instant order email via SMTP (Gmail)
 
 💾 Order Persistence – All orders saved in a MySQL database
