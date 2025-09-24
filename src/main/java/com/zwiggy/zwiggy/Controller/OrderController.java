@@ -21,9 +21,8 @@ public class OrderController {
     @PostMapping("/create")
     ResponseEntity<Map<String, String>> createOrder(@RequestBody OrderRequest orderRequest){
     return orderService.saveOrder(orderRequest);
-
-
     }
+
     @GetMapping("/history")
     public ResponseEntity<List<OrderResponse>> getOrderHistory(@RequestParam String email) {
         List<OrderResponse> orders = orderService.getOrderHistory(email);

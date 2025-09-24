@@ -3,20 +3,32 @@ import { useCallback, useEffect, useState } from 'react';
 async function sendHttpRequest(url, config) {
   // Get token from localStorage
   const token = localStorage.getItem('authToken');
-  
-  // Prepare headers
+
+  // Prepare headers without forcing Content-Type on simple GET requests
   const headers = {
-    'Content-Type': 'application/json',
     ...config.headers,
   };
 
+  // Only set Content-Type when sending a body (POST/PUT/PATCH) to avoid preflight on GET
+  const method = (config && config.method ? config.method : 'GET').toUpperCase();
+  const hasBody = config && config.body !== undefined && config.body !== null;
+  if (hasBody || method !== 'GET') {
+    headers['Content-Type'] = headers['Content-Type'] || 'application/json';
+  }
+
+  // Add Authorization only when needed; avoid for public GET to /meals/**
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+    const isPublicMealsGet = method === 'GET' && /\/meals\//.test(url);
+    if (!isPublicMealsGet) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
   }
 
   const response = await fetch(url, {
     ...config,
     headers,
+    mode: 'cors',
+    credentials: 'omit',
   });
 
   const resData = await response.json();

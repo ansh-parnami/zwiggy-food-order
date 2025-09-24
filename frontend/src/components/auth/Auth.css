@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(#29251c, #2c2306);
   padding: 40px 0;
 }
 .auth-container Input {

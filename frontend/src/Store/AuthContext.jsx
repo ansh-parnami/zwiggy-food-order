@@ -46,7 +46,7 @@ export function AuthContextProvider({ children }) {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:8080/auth/login', {
+      const response = await fetch('https://zwiggy.duckdns.org/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export function AuthContextProvider({ children }) {
 
   const register = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:8080/auth/register', {
+      const response = await fetch('https://zwiggy.duckdns.org/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

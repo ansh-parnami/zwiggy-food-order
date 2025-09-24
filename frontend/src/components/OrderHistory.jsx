@@ -14,7 +14,7 @@ export default function OrderHistory() {
 
   const navigate = useNavigate();
   const url = useMemo(() => {
-    return `http://localhost:8080/order/history?email=${encodeURIComponent(email)}`;
+    return `https://zwiggy.duckdns.org/order/history?email=${encodeURIComponent(email)}`;
   }, [email]);
 
   const config = useMemo(() => ({ method: 'GET' }), []);

@@ -39,7 +39,9 @@ export default function Header() {
         <div id="title">
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <img src={logoImg} alt="A restaurant" />
-            <h1>ZWIGGY</h1>
+            <h1>ZWIGGY
+                <sup>©</sup>
+                </h1>
           </Link>
         </div>
 
@@ -50,8 +52,7 @@ export default function Header() {
                     transition={{ duration: 0.2 }}>
           {authCtx.isAuthenticated ? (
             <>
-            {!isOnOrderHistoryPage && (
-              <span className="user-info">Welcome, {authCtx.user?.name}</span>)}
+
             {!isHomePage && (
                        <Link to="/">
     <span><Button textOnly>Home</Button></span>
@@ -80,7 +81,7 @@ export default function Header() {
               )}
               {location.pathname !== '/register' && (
                 <Link to="/register">
-                  <Button>Sign Up</Button>
+                  <Button> Sign Up</Button>
                 </Link>
               )}
               <Button textOnly onClick={handleShowCart}>Cart ({totalCartItems})</Button>

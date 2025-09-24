@@ -11,7 +11,7 @@ export default function Meals() {
     data: loadedMeals,
     isLoading,
     error,
-  } = useHttp('http://localhost:8080/meals/all', requestConfig, []);
+  } = useHttp('https://zwiggy.duckdns.org/meals/all', requestConfig, []);
 
   if (isLoading) {
     return <p>Fetching meals...</p>;

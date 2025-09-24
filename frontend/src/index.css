@@ -9,7 +9,11 @@ body {
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(#29251c, #2c2306);
+ background-image: url('https://zwiggybucket.s3.eu-north-1.amazonaws.com/Gemini_Generated_Image_habq0shabq0shabq.png');
+    background-repeat: no-repeat; /* <-- Add this: Prevents the image from repeating */
+      background-size: cover;      /* <-- Add this: Stretches the image to cover the entire container */
+      background-position: center; /* <-- Add this: Centers the image horizontally and vertically */
+      background-attachment: fixed;
   color: #d9e2f1;
   min-height: 100vh;
   align-items: center;
@@ -209,12 +213,9 @@ h1 {
   font-weight: bold;
 }
 
-.user-info {
-  font-weight: bold;
-  margin-right: 180px;
-  color: #ffab04;
 
-}
+
+
 
 label{
   color: #111111;
@@ -364,7 +365,7 @@ label{
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
 
 
 }
@@ -387,19 +388,19 @@ label{
 }
 
 .order-history-item{
-   border-radius: 2rem; 
-  display: flex;               
-  align-items: center;    
-  flex-direction: column;     
-              
-  width: 100%;                 
-  box-sizing: border-box; 
+   border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  box-sizing: border-box;
   border-left: 4px solid yellow;
   border-right: 4px solid yellow;
   padding: 1rem;
   margin-bottom: 1rem;
   background-color:rgba(0, 0, 0, 0.4);
-  
+
 }
 
 @media (max-width: 600px) {
@@ -423,19 +424,22 @@ label{
     width: 100%;
   }
 
-  #title {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
+ #title {
 
-  #title img {
-    display: none;
-  }
+     display: flex; /* Make sure it's a flex container */
+     flex-direction: column;
+     /* Aligns them vertically in the middle */
+     width: 100%;
+   }
+
+   #main-header #title img {
+     display: none; /* Optional: make the border thinner on mobile */
+   }
+
+
 
   #title h1 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0;
     color: #ffc404;
     letter-spacing: 0.1rem;
@@ -451,9 +455,9 @@ label{
 
   nav,
   .auth-buttons {
+   margin-left:5px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     gap: 0.5rem;
     width: 100%;
   }
@@ -465,14 +469,17 @@ label{
 
   button,
   .button {
-    background: none !important;
-    background-color: transparent !important;
-    border: none !important;
-    color: #ffc404 !important;
+
+background-color: #ffab04;
+  border-color: #ffab04;
+  color: #1f1a09;
+
     font-weight: 700;
+      min-width: 100px;      /* Or another value like 5rem that works for you */
+        text-align: center;
     box-shadow: none !important;
-    padding: 0.35rem 0.7rem;
-    font-size: 0.8rem;
+    padding: 0.5rem ;
+    font-size: 5vw;
     text-decoration: none;
   }
 

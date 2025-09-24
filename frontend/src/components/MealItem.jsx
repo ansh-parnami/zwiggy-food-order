@@ -16,7 +16,7 @@ export default function MealItem({ meal }) {
   return (
     <li className="meal-item">
       <article>
-       <img src={`https://zwiggy-food-order-1.onrender.com/${meal.image}`} alt={meal.name} />
+       <img src={`https://zwiggy.duckdns.org/${meal.image}`} alt={meal.name} />
 
         <div>
           <h3>{meal.name}</h3>

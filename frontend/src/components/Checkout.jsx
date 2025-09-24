@@ -28,7 +28,7 @@ export default function Checkout() {
     error,
     sendRequest,
     clearData
-  } = useHttp('https://zwiggy-food-order-1.onrender.com/order/create', requestConfig);
+  } = useHttp('https://zwiggy.duckdns.org/order/create', requestConfig);
 
   useEffect(() => {
     console.log('useHttp response:', { data, error });
