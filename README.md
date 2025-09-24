@@ -1,25 +1,50 @@
-Zwiggy is a simple yet functional food ordering app built with **Spring Boot** and **React**. Users can browse a curated list of meals, add them to cart, and place an order with delivery details — all without login.
 
-Order details are stored in a SQL database, and users receive a confirmation email instantly.
 
----
+🍽️ Zwiggy – Full-Stack Food Ordering App
 
-## 🚀 Features
+Zwiggy – Food Ordering Site is a sleek and responsive food ordering platform built with Spring Boot and React. Users can securely register and log in using a JWT-based authentication system, ensuring that only authorized users can place orders and access their personal order history. Once logged in, users can browse meals, manage their cart, and enjoy a personalized checkout flow with subtle animations and toast alerts enhancing the overall experience.
 
-- 🧾 Browse meals with images, descriptions, and prices
-- 🛒 Add/remove items from cart
-- 📬 Place orders with delivery info
-- 📨 Receive order confirmation via email (SMTP)
-- 💾 Orders stored in MySQL
-- 🔁 Checkout flow handled via modal — clean and fast UX
+Orders are stored in MySQL, and users receive instant order confirmations via email notifications. Authentication also ensures that order history, cart data, and profile information remain private and accessible only to the logged-in user.
+
 
 ---
 
-## 🧰 Tech Stack
+🚀 Features
 
-| Layer     | Tech |
-|-----------|------|
-| 🧠 Backend | Spring Boot, Spring Data JPA, MySQL |
-| 🎨 Frontend | React (Vite), Context API, CSS Modules |
-| ✉️ Email   | Spring Mail (SMTP: Gmail) |
-| 📦 Build Tools | Maven (backend), npm (frontend) |
+🧾 Browse Meals – Explore curated meals with images, prices, and descriptions
+
+🛒 Cart System – Add/remove items in real-time using React Context API
+
+📨 Email Confirmation – Instant order email via SMTP (Gmail)
+
+💾 Order Persistence – All orders saved in a MySQL database
+
+📃 Order History – View past orders on a dedicated page
+
+🔐 User Authentication (Optional) – Register/login to view personal order history OR for ordering your cart
+
+🔍 Search Meals – Filter meals by name or description
+
+💫 Framer Motion Animations (New!) – Smooth transitions for modals, pages, and cart updates
+
+🔔 Toast Notifications (New!) – Real-time feedback for add-to-cart, order placed, etc.
+
+🔁 Clean UX – Checkout via modal with form validation and loading states
+
+📱 Mobile Friendly – Fully responsive design using CSS Modules
+
+
+
+---
+
+🧰 Tech Stack
+
+Layer	Tech
+
+🧠 Backend	Spring Boot, Spring Data JPA, MySQL, Spring Security (optional)
+🎨 Frontend	React (Vite), Context API, CSS Modules, Framer Motion, React Toastify
+✉️ Email	Spring Mail (SMTP: Gmail)
+🔐 Auth	JWT-based login/signup (optional)
+📦 Build Tools	Maven (backend), npm (frontend)
+
+
